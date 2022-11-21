@@ -26,7 +26,6 @@ export default {
       this.$store.commit('updateUser', user);
       if (user) {
         this.$store.dispatch("getCurrentUser");
-        console.log(this.$store.state.profileEmail);
       }
     });
     this.checkRoute();
@@ -42,6 +41,7 @@ export default {
       this.navigation = false;
     }
   },
+
   watch: {
     $route () {
       this.checkRoute();

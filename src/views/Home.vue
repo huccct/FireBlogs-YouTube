@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <BlogPost :post="welcomeScreen" />
+    <BlogPost v-if="!user" :post="welcomeScreen" />
     <BlogPost :post="post" v-for="(post, index) in sampleBlogPost" :key="index" />
     <div class="blog-card-wrap">
       <div class="container">
@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div class="updates">
+    <div v-if="!user" class="updates">
       <div class="container">
         <h2>never miss a post, Register for you free account today!</h2>
         <router-link class="router-button" to="#"> Register for FireBlogs <Arrow class="arrow arrow-light" /></router-link>
@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       welcomeScreen: {
-        title: 'Welcome',
+        title: 'Welcome!',
         blogPost:
           "Weekly blog articles with all things programming including HTML, CSS, JavaScript and more.Register tody to never miss a post!",
         welcomeScreen: true,
@@ -52,6 +52,9 @@ export default {
   computed: {
     sampleBlogCards () {
       return this.$store.state.sampleBlogCards;
+    },
+    user () {
+      return this.$store.state.user;
     }
   }
 }
